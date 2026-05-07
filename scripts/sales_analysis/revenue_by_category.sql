@@ -1,0 +1,13 @@
+-- ============================================================
+-- File: revenue_by_category.sql
+-- Description: Revenue breakdown by product category
+-- ============================================================
+
+-- Total revenue per category
+SELECT
+    p.category,
+    SUM(f.sales_amount) AS total_revenue
+FROM Gold.fact_sales f
+JOIN Gold.dim_products p ON f.product_key = p.product_key
+GROUP BY p.category
+ORDER BY total_revenue DESC;
